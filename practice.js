@@ -13,35 +13,34 @@
 
 // use _.each to create a copy of the given array.
 var moreFruits = function (fruits) {
-  var results = [];
-
-  _.each(fruits, function(fruit, index, collection) {
-    results.push(fruit);
+  var fruitsArr = [];
+  _.each(fruits, function(item, i, array) {
+    fruitsArr.push(item);
   });
-  return results;
+  return fruitsArr;
 };
 
 // use _.each to traverse the number array and determine
 // which are multiples of five.
 var multiplesOfFive = function (numbers) {
-  var count = 0;
-  _.each(numbers, function(num, index, collection) {
-    if (num % 5 === 0) {
-      count++;
+  var multOf5 = 0;
+  _.each(numbers, function(item, i, array) {
+    if (item % 5 === 0) {
+      multOf5++;
     }
   });
-  return count;
+  return multOf5;
 };
 
 // use _.each to build an array containing only tweets belonging to a specified user.
 var getUserTweets = function(tweets, user) {
-  var userTweets = [];
-  _.each(tweets, function(item, index, collection) {
+  var tweetArr = [];
+  _.each(tweets, function(item, i, array) {
     if (item.user === user) {
-      userTweets.push(item);
+      tweetArr.push(item);
     }
   });
-  return userTweets;
+  return tweetArr;
 };
 
 /*
@@ -52,35 +51,23 @@ var getUserTweets = function(tweets, user) {
 
 // use _.filter to return the fruits array with only the desired fruit.
 var onlyOneFruit = function (fruits, targetFruit) {
-  var tFruit = _.filter(fruits, function(item) {
-    return item === targetFruit;
-  });
-  return tFruit;
+
 };
 
 // use _.filter to return the fruits array with only fruits
 // starting with the letter 'P'.
 var startsWith = function (fruits, letter) {
-  var pFruit = _.filter(fruits, function(item) {
-    return item[0] === letter;
-  });
-  return pFruit;
+
 };
 
 // return a filtered array containing only cookie-type desserts.
 var cookiesOnly = function (desserts) {
-  var cDesserts = _.filter(desserts, function(item) {
-    return item.type === 'cookie';
-  });
-  return cDesserts;
+
 };
 
 // rebuild the getUserTweets function from above with _.filter instead
 var filterUserTweets = function(tweets, user) {
-  var userTweets = _.filter(tweets, function(item) {
-    return item.user === user;
-  });
-  return userTweets;
+
 };
 
 /*
@@ -92,35 +79,20 @@ var filterUserTweets = function(tweets, user) {
 // given an array of strings, use _.map to return a new array containing all
 // strings converted to uppercase letters.
 var upperCaseFruits = function (fruits) {
-  var upper = _.map(fruits, function(item) {
-    return item.toUpperCase();
-  });
-  return upper;
+
 };
 
 // given an array of dessert objects, return a new array of objects
 // that have a new "glutenFree" property, with a boolean value.
 // TIP: Items that contain flour are not gluten-free.
 var glutenFree = function (desserts) {
-  var gFree = _.map(desserts, function(item) {
-    var ingredArr = item.ingredients;
-    if (_.contains(ingredArr, 'flour') === true) {
-      item['glutenFree'] = true;
-    } else {
-      item['glutenFree'] = false;
-    }
-    return item;
-  });
-  return gFree;
+
 };
 
 // given an array of tweet objects, return a new array of strings
 // containing only the message properties.
 var allUserMessages = function(tweets) {
-  var messages = _.map(tweets, function(item) {
-    return item.message;
-  });
-  return messages;
+
 };
 
 // use _.map to return an array of items with their sale prices, with a new property
@@ -144,13 +116,7 @@ var allUserMessages = function(tweets) {
 
 */
 var applyCoupon = function (groceries, coupon) {
-  var grocerySale = _.map(groceries, function(item) {
-    var fullPrice = Number.parseFloat(item.price.slice(1)) * 100;
-    var discount = fullPrice * coupon;
-    item['salePrice'] = '$' + ((fullPrice - discount) / 100).toFixed(2);
-    return item;
-  });
-  return grocerySale;
+
 };
 
 // var applyCoupon = function (groceries, coupon) {
