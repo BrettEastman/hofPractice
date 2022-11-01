@@ -51,23 +51,31 @@ var getUserTweets = function(tweets, user) {
 
 // use _.filter to return the fruits array with only the desired fruit.
 var onlyOneFruit = function (fruits, targetFruit) {
-
+  return _.filter(fruits, function (item, i, collection) {
+    return item === targetFruit;
+  });
 };
 
 // use _.filter to return the fruits array with only fruits
 // starting with the letter 'P'.
 var startsWith = function (fruits, letter) {
-
+  return _.filter(fruits, function(item, i, collection) {
+    return item[0] === letter;
+  });
 };
 
 // return a filtered array containing only cookie-type desserts.
 var cookiesOnly = function (desserts) {
-
+  return _.filter(desserts, function (item, i, collection) {
+    return item.type === 'cookie';
+  });
 };
 
 // rebuild the getUserTweets function from above with _.filter instead
 var filterUserTweets = function(tweets, user) {
-
+  return _.filter(tweets, function(item, i, collection) {
+    return item.user === user;
+  });
 };
 
 /*
