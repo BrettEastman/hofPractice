@@ -153,14 +153,24 @@ var applyCoupon = function (groceries, coupon) {
  */
 
 // return the total price of all products.
-var sumTotal = function (products) {
-
+var sumTotal = function (groceries) {
+  return _.reduce(groceries, function(acc, item, i, collection) {
+    return acc += Number.parseFloat(item.price.slice(1));
+  }, 0);
 };
 
 // return an object consisting of dessert types and how many of each.
 // exampleOutput: { dessertType: 3, dessertType2: 1 }
 var dessertCategories = function (desserts) {
-
+  _.reduce(desserts, function(acc, item, i, collection) {
+    // console.log('acc: ', acc, 'item: ', item, 'i: ', i);
+    if (dessertTypes[item.type] === undefined) {
+      dessertTypes[item.type] = 1;
+    } else {
+      dessertTypes[item.type]++;
+    }
+  }, dessertTypes = {});
+  return dessertTypes;
 };
 
 // return an object with the proper count of all user messages
@@ -175,19 +185,44 @@ var dessertCategories = function (desserts) {
   }
 */
 var countMessagesPerUser = function(tweets) {
-
+  _.reduce(tweets, function(acc, item, i, collection) {
+    if (tweetCountPerUser[item.user] === undefined) {
+      tweetCountPerUser[item.user] = 1;
+    } else {
+      tweetCountPerUser[item.user]++;
+    }
+  }, tweetCountPerUser = {});
+  return tweetCountPerUser;
 };
 
 // given an array of movie data objects,return an array containing
 // movies that came out between 1990 and 2000.
 // TIP: use an array as your accumulator - don't push to an external array!
 var ninetiesKid = function (movies) {
-
+  _.reduce(movies, function(acc, item, i, collection) {
+    if (item.releaseYear >= 1990 & item.releaseYear <= 2000) {
+      nintiesMovies.push(item.title);
+    }
+  }, nintiesMovies = []);
+  return nintiesMovies;
 };
 
 // return an boolean stating if there exists a movie with a shorter
 // runtime than your time limit.
 // timeLimit is an integer representing a number of minutes.
 var movieNight = function (movies, timeLimit) {
-
+  var bool = false;
+  _.reduce(movies, function(acc, item, i, collection) {
+    if (item.runtime < timeLimit) {
+      bool = true;
+    }
+  });
+  return bool;
 };
+
+// var movieNight = function (movies, timeLimit) {
+//   _.reduce(movies, function(acc, item, i, collection) {
+//     runtimeArr.push(item.runtime < timeLimit);
+//   }, runtimeArr = []);
+//   return runtimeArr.includes(true);
+// };
